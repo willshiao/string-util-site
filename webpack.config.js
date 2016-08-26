@@ -1,5 +1,5 @@
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   entry: './src/main.js',
@@ -18,12 +18,16 @@ module.exports = {
         loader: 'vue'
       },
       {
+        test: /\.css$/,
+        loader: 'style!css',
+      },
+      {
         test: /\.js$/,
         loader: 'babel',
         exclude: /node_modules/
       },
       {
-        test: /\.(png|jpg|gif|svg)$/,
+        test: /\.(png|jpg|gif|svg|ttf|woff|woff2|eot)$/,
         loader: 'file',
         query: {
           name: '[name].[ext]?[hash]'
@@ -36,10 +40,10 @@ module.exports = {
     noInfo: true
   },
   devtool: '#eval-source-map'
-}
+};
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map'
+  module.exports.devtool = '#source-map';
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
@@ -52,5 +56,5 @@ if (process.env.NODE_ENV === 'production') {
         warnings: false
       }
     })
-  ])
+  ]);
 }

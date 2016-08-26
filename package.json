@@ -8,7 +8,11 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "vue": "^2.0.0-rc.1"
+    "material-design-icons": "^3.0.0",
+    "materialize-css": "^0.97.7",
+    "vue": "^2.0.0-rc.1",
+    "vue-router": "^2.0.0-rc.3",
+    "vuex": "^2.0.0-rc.5"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
@@ -17,6 +21,7 @@
     "cross-env": "^1.0.6",
     "css-loader": "^0.23.1",
     "file-loader": "^0.8.4",
+    "style-loader": "^0.13.1",
     "vue-loader": "^9.2.2",
     "webpack": "^2.1.0-beta.20",
     "webpack-dev-server": "^2.1.0-beta.0"

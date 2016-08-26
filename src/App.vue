@@ -1,21 +1,27 @@
 <template>
   <div id="app">
-    <h1>{{ msg }}</h1>
+    <navbar></navbar>
+    <router-view class="view"></router-view>
   </div>
 </template>
 
 <script>
+
+import Navbar from './components/Navbar.vue';
+
 export default {
+
   data() {
     return {
       msg: 'Hello Vue!'
-    }
+    };
+  },
+  components: {
+    'navbar': Navbar
   }
 }
+
 </script>
 
 <style>
-body {
-  font-family: Helvetica, sans-serif;
-}
 </style>
