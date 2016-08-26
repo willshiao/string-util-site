@@ -11,17 +11,25 @@
       </div>
     </div>
   </form>
+  {{crypted}}
 </div>
 
 </template>
 
 <script>
 
+import * as CryptoJs from 'crypto-js';
+
 $(() => {
   $('select').material_select();
 });
 
 export default {
+  data() {
+    return {
+      crypted: CryptoJs.AES.encrypt('test', 'test123').toString()
+    };
+  }
 }
 
 </script>

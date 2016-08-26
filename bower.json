@@ -1,0 +1,21 @@
+{
+  "name": "string-util-site",
+  "description": "A static site providing client-side string manipulation, encoding, decoding, and encryption utilities.",
+  "main": "",
+  "authors": [
+    "William Shiao <willshiao@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "crypto-js": "^3.1.6"
+  }
+}

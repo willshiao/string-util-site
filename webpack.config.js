@@ -11,6 +11,12 @@ module.exports = {
   resolveLoader: {
     root: path.join(__dirname, 'node_modules'),
   },
+  resolve: {
+    modules: [
+      path.resolve(__dirname, 'app'),
+      'node_modules', 'bower_components'
+    ]
+  },
   module: {
     loaders: [
       {
