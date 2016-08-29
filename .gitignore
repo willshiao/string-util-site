@@ -5,3 +5,4 @@ dist/
 npm-debug.log
 *.sublime-project
 *.sublime-workspace
+gh-pages
