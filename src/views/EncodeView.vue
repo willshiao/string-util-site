@@ -57,20 +57,20 @@ import * as base64 from 'crypto-js/enc-base64';
 import * as utf8 from 'crypto-js/enc-utf8';
 import * as utf16 from 'crypto-js/enc-utf16';
 
-
-function strToBaseStr(str, seperator, baseN) {
-  const outArr = [];
-  for(let i = 0; i < str.length; ++i) {
-    outArr.push((str.codePointAt(i) || 0).toString(baseN));
-  }
-  return outArr.join(seperator);
-}
-
-function baseStrToStr(baseStr, seperator, baseN) {
-  return baseStr.split(seperator)
-    .map(nStr => String.fromCodePoint(parseInt(nStr, baseN)||0))
-    .join('');
-}
+const actionMap = {
+  base2: [strToBaseStr, baseStrToStr],
+  base8: [strToBaseStr, baseStrToStr],
+  base10: [strToBaseStr, baseStrToStr],
+  base16: [strToBaseStr, baseStrToStr],
+  base32: [
+    input => base32.encode(input),
+    input => base32.decode(input)
+  ],
+  base64: [
+    input => base64.stringify(utf8.parse(input)),
+    input => base64.parse(input).toString(utf8)
+  ]
+};
 
 export default {
   name: 'EncodeView',
@@ -93,43 +93,31 @@ export default {
   computed: {
     output: function() {
       try {
-        if(this.encoding) {
-          switch(this.selected) {
-          case 'base2':
-            return strToBaseStr(this.input, this.seperator, 2);
-          case 'base8':
-            return strToBaseStr(this.input, this.seperator, 8);
-          case 'base10':
-            return strToBaseStr(this.input, this.seperator, 10);
-          case 'base16':
-            return strToBaseStr(this.input, this.seperator, 16);
-          case 'base32':
-            return base32.encode(this.input);
-          case 'base64':
-            return base64.stringify(utf8.parse(this.input));
-          }
-        } else {
-          switch(this.selected) {
-          case 'base2':
-            return baseStrToStr(this.input, this.seperator, 2);
-          case 'base8':
-            return baseStrToStr(this.input, this.seperator, 8);
-          case 'base10':
-            return baseStrToStr(this.input, this.seperator, 10);
-          case 'base16':
-            return baseStrToStr(this.input, this.seperator, 16);
-          case 'base32':
-            return base32.decode(this.input);
-          case 'base64':
-            return base64.parse(this.input).toString(utf8);
-          }
+        let actionNum = this.encoding ? 0 : 1;
+        if(this.selected in actionMap) {
+          return actionMap[this.selected][actionNum](
+            this.input, this.seperator, parseInt(this.selected.substring(4)) || 2);
         }
       } catch(e) {
         console.error('Error: ' + e.stack);
-        return '';
       }
+      return '';
     }
   }
+}
+
+function strToBaseStr(str, seperator, baseN) {
+  const outArr = [];
+  for(let i = 0; i < str.length; ++i) {
+    outArr.push((str.codePointAt(i) || 0).toString(baseN));
+  }
+  return outArr.join(seperator);
+}
+
+function baseStrToStr(baseStr, seperator, baseN) {
+  return baseStr.split(seperator)
+    .map(nStr => String.fromCodePoint(parseInt(nStr, baseN)||0))
+    .join('');
 }
 
 </script>
