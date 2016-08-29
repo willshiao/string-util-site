@@ -12,6 +12,9 @@
         <li class="nav-item">
           <router-link class="nav-link" activeClass="active" to="/encode">Encode/Decode</router-link>
         </li>
+        <li class="nav-item">
+          <router-link class="nav-link" activeClass="active" to="/hash">Hash</router-link>
+        </li>
       </ul>
     </div>
   </nav>
