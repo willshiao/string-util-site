@@ -4,10 +4,10 @@ import Router from 'vue-router';
 Vue.use(Router);
 
 import {EncodeView, HomeView, HashView} from '../views';
-// import  from '../views/Homeview.vue';
 
 export default new Router({
   mode: 'history',
+  base: '/',
   routes: [
     { path: '/', component: HomeView },
     { path: '/encode', component: EncodeView },
