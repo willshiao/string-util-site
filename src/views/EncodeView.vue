@@ -53,6 +53,10 @@
 <script>
 
 import * as base32 from 'hi-base32';
+import * as base64 from 'crypto-js/enc-base64';
+import * as utf8 from 'crypto-js/enc-utf8';
+import * as utf16 from 'crypto-js/enc-utf16';
+
 
 function strToBaseStr(str, seperator, baseN) {
   const outArr = [];
@@ -102,7 +106,7 @@ export default {
           case 'base32':
             return base32.encode(this.input);
           case 'base64':
-            return window.btoa(this.input);
+            return base64.stringify(utf8.parse(this.input));
           }
         } else {
           switch(this.selected) {
@@ -117,7 +121,7 @@ export default {
           case 'base32':
             return base32.decode(this.input);
           case 'base64':
-            return window.atob(this.input);
+            return base64.parse(this.input).toString(utf8);
           }
         }
       } catch(e) {
