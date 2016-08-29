@@ -28,6 +28,7 @@
         autocorrect="off" autocapitalize="off" spellcheck="false">{{output}}</textarea>
     </div>
     <button type="button" class="btn btn-primary" v-on:click="selectOutput">Select</button>
+    <button type="button" class="btn btn-primary" v-on:click="copyToInput">Copy Output to Input</button>
   </form>
 </div>
 
@@ -80,8 +81,11 @@ export default {
     }
   },
   methods: {
-    selectOutput: function(evt) {
+    selectOutput: function() {
       $('#hashing-output').select();
+    },
+    copyToInput: function() {
+      this.input = this.output;
     }
   },
   computed: {

@@ -45,6 +45,7 @@
         autocorrect="off" autocapitalize="off" spellcheck="false">{{output}}</textarea>
     </div>
     <button type="button" class="btn btn-primary" v-on:click="selectOutput">Select All</button>
+    <button type="button" class="btn btn-primary" v-on:click="copyToInput">Copy Output to Input</button>
   </form>
 </div>
 
@@ -86,8 +87,11 @@ export default {
     updateMode: function(evt) {
       this.encoding = (evt.target.id === 'encode-label');
     },
-    selectOutput: function(evt) {
+    selectOutput: function() {
       $('#encoding-output').select();
+    },
+    copyToInput: function() {
+      this.input = this.output;
     }
   },
   computed: {
